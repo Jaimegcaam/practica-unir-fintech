@@ -28,7 +28,7 @@ if __name__ == "__main__":
     if len(sys.argv) >= 3:
         filename = sys.argv[1]
         remove_duplicates = sys.argv[2].lower() == "yes"
-        if len(sys.argv) == 4:
+        if len(sys.argv) == 4:  # Si se ha indicado un tercer argumento, se interpreta como el orden
             ascending = sys.argv[3].lower() in ["asc", "ascending", "true"]
     else:
         print("Se debe indicar el fichero como primer argumento")
