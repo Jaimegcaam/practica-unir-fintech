@@ -6,7 +6,7 @@ Organization: UNIR
 import os
 import sys
 
-DEFAULT_FILENAME = "words.txt"
+DEFAULT_FILENAME = "palabras.txt"
 DEFAULT_DUPLICATES = False
 
 
@@ -24,12 +24,16 @@ def remove_duplicates_from_list(items):
 if __name__ == "__main__":
     filename = DEFAULT_FILENAME
     remove_duplicates = DEFAULT_DUPLICATES
-    if len(sys.argv) == 3:
+    ascending = True
+    if len(sys.argv) >= 3:
         filename = sys.argv[1]
         remove_duplicates = sys.argv[2].lower() == "yes"
+        if len(sys.argv) == 4:  # Si se ha indicado un tercer argumento, se interpreta como el orden
+            ascending = sys.argv[3].lower() in ["asc", "ascending", "true"]
     else:
         print("The filename must be provided as the first argument")
         print("The second argument indicates whether duplicates should be removed")
+        print("The third argument (optional) indicates the order: asc/desc (default: asc)")
         sys.exit(1)
 
     print(f"Words will be read from file {filename}")
@@ -46,4 +50,4 @@ if __name__ == "__main__":
     if remove_duplicates:
         word_list = remove_duplicates_from_list(word_list)
 
-    print(sort_list(word_list))
+    print(sort_list(word_list, ascending=ascending))
